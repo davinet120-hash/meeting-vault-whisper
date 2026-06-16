@@ -86,6 +86,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "VaultRecord" },
       { property: "og:description", content: "100% private, local-first meeting assistant." },
       { property: "og:type", content: "website" },
+      { name: "twitter:title", content: "VaultRecord" },
+      { name: "twitter:description", content: "100% private, local-first meeting assistant." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/bfd06e15-64ce-498c-9cc8-5a580a633cea/id-preview-935df4f3--14d90181-8888-4902-8ba8-0b61e8a22e1c.lovable.app-1781598703969.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/bfd06e15-64ce-498c-9cc8-5a580a633cea/id-preview-935df4f3--14d90181-8888-4902-8ba8-0b61e8a22e1c.lovable.app-1781598703969.png" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
