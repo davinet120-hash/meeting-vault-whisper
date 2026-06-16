@@ -1,6 +1,25 @@
 export type Lang = "en" | "he";
 
-export const translations = {
+export interface Dict {
+  appName: string; tagline: string; privacyNotice: string;
+  setupTitle: string; setupDesc: string; password: string; confirmPassword: string;
+  createVault: string; passwordMin: string; passwordMismatch: string;
+  lockTitle: string; lockDesc: string; unlock: string; wrongPassword: string; lock: string;
+  dashboard: string; folders: string; settings: string; newMeeting: string;
+  noMeetings: string; allMeetings: string; unfiled: string; addFolder: string;
+  folderName: string; create: string; cancel: string; delete: string; rename: string; search: string;
+  untitled: string; titlePh: string; record: string; stop: string; recording: string;
+  upload: string; pasteText: string; pasteTextPh: string; process: string; processing: string;
+  rawTranscript: string; protocol: string; summary: string; participants: string;
+  decisions: string; actionItems: string; task: string; owner: string; due: string;
+  exportPdf: string; save: string; saved: string; back: string;
+  missingKey: string; aiError: string; needInput: string; noProtocol: string; notes: string;
+  apiKey: string; apiKeyDesc: string; language: string; english: string; hebrew: string;
+  exportDb: string; importDb: string; exportDbDesc: string; importDbDesc: string;
+  changePassword: string; about: string; aboutText: string; confirm: string; listenNote: string;
+}
+
+export const translations: Record<Lang, Dict> = {
   en: {
     appName: "VaultRecord",
     tagline: "Private, local-first meeting assistant",
