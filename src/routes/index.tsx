@@ -5,10 +5,10 @@ import { AppRoot } from "@/components/AppRoot";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "VaultRecord — Private Meeting Assistant" },
-      { name: "description", content: "100% local, private meeting assistant. Record, transcribe and generate meeting protocols with AI — all data stays on your device." },
-      { property: "og:title", content: "VaultRecord — Private Meeting Assistant" },
-      { property: "og:description", content: "100% local, private meeting assistant. Your data never leaves your device." },
+      { title: "VaultRecord — עוזר ישיבות פרטי" },
+      { name: "description", content: "עוזר ישיבות מקומי ופרטי. הקלטה, תמלול ופרוטוקול — הכל נשמר רק במכשיר שלך." },
+      { property: "og:title", content: "VaultRecord — עוזר ישיבות פרטי" },
+      { property: "og:description", content: "עוזר ישיבות מקומי לחלוטין. הנתונים שלך לא עוזבים את המכשיר." },
     ],
   }),
   ssr: false,

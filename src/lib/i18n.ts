@@ -259,3 +259,17 @@ export const translations: Record<Lang, Dict> = {
 export function isRTL(lang: Lang) {
   return lang === "he";
 }
+
+const LANG_STORAGE_KEY = "vaultrecord_lang";
+
+export function getInitialLang(): Lang {
+  if (typeof window === "undefined") return "he";
+  const stored = localStorage.getItem(LANG_STORAGE_KEY);
+  return stored === "en" ? "en" : "he";
+}
+
+export function persistLang(lang: Lang) {
+  if (typeof window !== "undefined") localStorage.setItem(LANG_STORAGE_KEY, lang);
+  document.documentElement.lang = lang;
+  document.documentElement.dir = isRTL(lang) ? "rtl" : "ltr";
+}

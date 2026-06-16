@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Shield, Lock } from "lucide-react";
+import { Shield, Lock, Languages } from "lucide-react";
 import { useApp } from "@/lib/app-context";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -107,10 +107,21 @@ function AuthShell({
   desc: string;
   children: React.ReactNode;
 }) {
-  const { t } = useApp();
+  const { t, lang, setLang } = useApp();
   return (
     <div className="min-h-dvh flex flex-col items-center justify-center px-5 py-10 bg-gradient-to-br from-background via-background to-accent/30">
-      <div className="w-full max-w-md">
+      <div className="w-full max-w-md relative">
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          className="absolute -top-2 end-0 gap-1.5 text-muted-foreground"
+          onClick={() => setLang(lang === "he" ? "en" : "he")}
+          aria-label={t.toggleLang}
+        >
+          <Languages className="size-4" />
+          {lang === "he" ? t.english : t.hebrew}
+        </Button>
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center size-14 rounded-2xl bg-primary text-primary-foreground mb-4 shadow-lg shadow-primary/20">
             {icon}

@@ -7,7 +7,7 @@ import {
   saveSettings,
   type Settings,
 } from "@/lib/db";
-import { translations, type Dict, type Lang, isRTL } from "@/lib/i18n";
+import { translations, type Dict, type Lang, getInitialLang, persistLang } from "@/lib/i18n";
 
 interface AppCtx {
   ready: boolean;
@@ -21,6 +21,7 @@ interface AppCtx {
   unlock: (pw: string) => Promise<boolean>;
   lock: () => void;
   updateSettings: (s: Settings) => Promise<void>;
+  setLang: (lang: Lang) => void;
 }
 
 const Ctx = createContext<AppCtx | null>(null);
@@ -35,7 +36,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(false);
   const [initialized, setInitialized] = useState(false);
   const [masterKey, setMasterKey] = useState<CryptoKey | null>(null);
-  const [settings, setSettings] = useState<Settings>({ geminiApiKey: "", language: "he", aiRules: "" });
+  const [settings, setSettings] = useState<Settings>(() => ({
+    geminiApiKey: "",
+    language: getInitialLang(),
+    aiRules: "",
+  }));
+
+  useEffect(() => {
+    persistLang(settings.language);
+  }, [settings.language]);
 
   useEffect(() => {
     (async () => {
@@ -43,12 +52,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setReady(true);
     })();
   }, []);
-
-  useEffect(() => {
-    const lang = settings.language;
-    document.documentElement.lang = lang;
-    document.documentElement.dir = isRTL(lang) ? "rtl" : "ltr";
-  }, [settings.language]);
 
   const value = useMemo<AppCtx>(() => {
     const t = translations[settings.language];
@@ -78,9 +81,17 @@ export function AppProvider({ children }: { children: ReactNode }) {
       },
       lock: () => setMasterKey(null),
       updateSettings: async (s: Settings) => {
-        if (!masterKey) return;
+        persistLang(s.language);
+        if (!masterKey) {
+          setSettings(s);
+          return;
+        }
         await saveSettings(masterKey, s);
         setSettings(s);
+      },
+      setLang: (lang: Lang) => {
+        persistLang(lang);
+        setSettings((s) => ({ ...s, language: lang }));
       },
     };
   }, [ready, initialized, masterKey, settings]);
