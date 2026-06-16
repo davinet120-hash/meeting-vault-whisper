@@ -194,9 +194,9 @@ export const translations: Record<Lang, Dict> = {
 
     listenNote: "הקלטה חיה לוכדת שמע מהמיקרופון ושולחת ל-Gemini לתמלול.",
   },
-} as const;
+};
 
-export type Dict = (typeof translations)["en"];
+
 
 export function isRTL(lang: Lang) {
   return lang === "he";
