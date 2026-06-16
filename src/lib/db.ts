@@ -176,7 +176,7 @@ export interface Settings {
   aiRules: string;
 }
 
-const DEFAULT_SETTINGS: Settings = { geminiApiKey: "", language: "en", aiRules: "" };
+const DEFAULT_SETTINGS: Settings = { geminiApiKey: "", language: "he", aiRules: "" };
 
 export async function loadSettings(key: CryptoKey): Promise<Settings> {
   const enc = await getMeta<{ iv: string; ct: string }>("settings");

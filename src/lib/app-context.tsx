@@ -35,7 +35,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(false);
   const [initialized, setInitialized] = useState(false);
   const [masterKey, setMasterKey] = useState<CryptoKey | null>(null);
-  const [settings, setSettings] = useState<Settings>({ geminiApiKey: "", language: "en", aiRules: "" });
+  const [settings, setSettings] = useState<Settings>({ geminiApiKey: "", language: "he", aiRules: "" });
 
   useEffect(() => {
     (async () => {
